@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ClassLibrary">
+      <HintPath>..\DataStructuresLab\ClassLibrary\bin\Debug\net8.0\ClassLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DataStructuresLab">
+      <HintPath>..\DataStructuresLab\DataStructuresLab\bin\Debug\net8.0\DataStructuresLab.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
