@@ -116,7 +116,7 @@ namespace ExtensionAndLinqLab
                 return;
             }
 
-            Console.WriteLine($"Общее количество цехов в заводе: {transportQueue.Count}");
+            Console.WriteLine($"Общее количество цехов в заводе: {transportQueue.Count}\n");
 
             int workshopNumber = 1;
             foreach (var workshop in transportQueue)

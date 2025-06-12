@@ -32,9 +32,18 @@ namespace ExtensionAndLinqLab
             //    transportList
             //);
 
+            TransportWorkshops.WriteColorMessage("Завод Бинго!", ConsoleColor.Red);
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
-            TransportWorkshops.WriteColorMessage("Цех", ConsoleColor.Red);
             TransportWorkshops.PrintTransportQueue(transportQueue);
+
+            TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
+            double maxCostLINQ = ExtensionsAndLinq.FindMaxCostByYearLINQ(transportQueue, 2010);
+            TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Green);
+
+            double maxCostExtension = ExtensionsAndLinq.FindMaxCostByYearExtension(transportQueue, 2010);
+            TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Green);
+
+
         }
     }
 }
