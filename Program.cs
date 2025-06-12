@@ -36,7 +36,6 @@ namespace ExtensionAndLinqLab
             TransportWorkshops.WriteColorMessage("Цех", ConsoleColor.Red);
             TransportWorkshops.PrintTransportQueue(transportQueue);
 
-            double mostExpensiveOffroadCar = ExtensionsAndLinq.FindExpensiveOffroadCarsLINQ(transportQueue, 20000);
         }
     }
 }

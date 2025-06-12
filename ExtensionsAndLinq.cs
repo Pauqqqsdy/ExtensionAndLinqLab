@@ -12,14 +12,14 @@ namespace ExtensionAndLinqLab
         public static double FindMaxPriceByYearLINQ(List<Transport> transportList, int minYear)
         {
             return (from transport in transportList
-                    where transport.Year > minYear
+                    where transport is Truck && transport.Year > minYear
                     select transport.Cost).Max();
         }
 
         public static double FindMaxPriceByYearExtension(List<Transport> transportList, int minYear)
         {
             return transportList
-                .Where(transport => transport.Year > minYear)
+                .Where(transport => transport is Truck && ((Truck)transport).Year > minYear)
                 .Max(transport => transport.Cost);
         }
     }
