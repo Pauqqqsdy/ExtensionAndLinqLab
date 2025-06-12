@@ -69,8 +69,16 @@ namespace ExtensionAndLinqLab
             #endregion
 
             #region Соединение
-            ExtensionsAndLinq.JoinWithOwnersLINQ(transportQueue);            
+            //TransportWorkshops.WriteColorMessage("LINQ метод:", ConsoleColor.Yellow);
+            //ExtensionsAndLinq.JoinWithOwnersLINQ(transportQueue);
+
+            //Console.WriteLine();
+
+            //TransportWorkshops.WriteColorMessage("Метод расширения:", ConsoleColor.Yellow);
+            //ExtensionsAndLinq.JoinWithOwnersExtension(transportQueue);
             #endregion
+
+            ExtensionsAndLinq.CompareFindMaxCost(transportQueue, 2010);
         }
     }
 }
