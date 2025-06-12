@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ExtensionAndLinqLab
 {
     public class ExtensionsAndLinq
     {
-        public static double FindMaxCostByYearLINQ(Queue<List<Transport>> transportQueue, int minYear)
+        public static double FindMaxCostTrucksByYearLINQ(Queue<List<Transport>> transportQueue, int minYear)
         {
             return (from transportList in transportQueue
                     from transport in transportList
@@ -20,7 +18,7 @@ namespace ExtensionAndLinqLab
                     select transport.Cost).Max();
         }
 
-        public static double FindMaxCostByYearExtension(Queue<List<Transport>> transportQueue, int minYear)
+        public static double FindMaxCostTrucksByYearExtension(Queue<List<Transport>> transportQueue, int minYear)
         {
             return transportQueue
                 .SelectMany(transportList => transportList)
@@ -58,7 +56,7 @@ namespace ExtensionAndLinqLab
 
         public static IEnumerable<Transport> GroupingPassengerCarsBySeatsLINQ(Queue<List<Transport>> transportQueue)
         {
-            TransportWorkshops.WriteColorMessage("LINQ метод: ", ConsoleColor.Cyan);
+            TransportWorkshops.WriteColorMessage("LINQ запрос: ", ConsoleColor.Cyan);
             var grouping = from transportList in transportQueue
                             from transport in transportList
                             where transport is PassengerCar
@@ -107,7 +105,7 @@ namespace ExtensionAndLinqLab
                           where transport is OffroadCar
                           select new { Марка = transport.Brand, Выпуск = transport.Year };
 
-            TransportWorkshops.WriteColorMessage("LINQ метод:", ConsoleColor.Cyan);
+            TransportWorkshops.WriteColorMessage("LINQ запрос:", ConsoleColor.Cyan);
             foreach (var transport in newType)
             {
                 Console.WriteLine($"{transport}");
@@ -208,7 +206,7 @@ namespace ExtensionAndLinqLab
             }
         }
 
-        public static double FindMaxCostByYearCycle(Queue<List<Transport>> transportQueue, int minYear)
+        public static double FindMaxCostTrucksByYearCycle(Queue<List<Transport>> transportQueue, int minYear)
         {
             double maxCost = double.MinValue;
             bool found = false;
@@ -235,7 +233,7 @@ namespace ExtensionAndLinqLab
             return maxCost;
         }
 
-        public static void CompareFindMaxCost(Queue<List<Transport>> transportQueue, int minYear)
+        public static void CompareFindMaxCostTrucksByYear(Queue<List<Transport>> transportQueue, int minYear)
         {
             const int iterations = 100;
             Stopwatch stopwatch = new Stopwatch();
@@ -245,7 +243,7 @@ namespace ExtensionAndLinqLab
             double resultLINQ = 0;
             for (int i = 0; i < iterations; i++)
             {
-                resultLINQ = FindMaxCostByYearLINQ(transportQueue, minYear);
+                resultLINQ = FindMaxCostTrucksByYearLINQ(transportQueue, minYear);
             }
             stopwatch.Stop();
             long linqTime = stopwatch.ElapsedTicks;
@@ -254,7 +252,7 @@ namespace ExtensionAndLinqLab
             double resultExtension = 0;
             for (int i = 0; i < iterations; i++)
             {
-                resultExtension = FindMaxCostByYearExtension(transportQueue, minYear);
+                resultExtension = FindMaxCostTrucksByYearExtension(transportQueue, minYear);
             }
             stopwatch.Stop();
             long extensionTime = stopwatch.ElapsedTicks;
@@ -263,12 +261,12 @@ namespace ExtensionAndLinqLab
             double resultCycle = 0;
             for (int i = 0; i < iterations; i++)
             {
-                resultCycle = FindMaxCostByYearCycle(transportQueue, minYear);
+                resultCycle = FindMaxCostTrucksByYearCycle(transportQueue, minYear);
             }
             stopwatch.Stop();
             long cycleTime = stopwatch.ElapsedTicks;
 
-            Console.WriteLine($"LINQ метод: {linqTime} мс, максимальная стоимость - {resultLINQ}");
+            Console.WriteLine($"LINQ запрос: {linqTime} мс, максимальная стоимость - {resultLINQ}");
             Console.WriteLine($"Метод расширения: {extensionTime} мс, максимальная стоимость - {resultExtension}");
             Console.WriteLine($"Цикл: {cycleTime} мс, максимальная стоимость - {resultCycle}");
         }

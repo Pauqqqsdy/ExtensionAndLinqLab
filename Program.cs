@@ -32,23 +32,23 @@ namespace ExtensionAndLinqLab
             //    transportList
             //);
 
-            TransportWorkshops.WriteColorMessage("Завод Бинго!", ConsoleColor.Magenta);
+            TransportWorkshops.WriteColorMessage("Завод, Бинго!", ConsoleColor.Magenta);
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
             TransportWorkshops.PrintTransportQueue(transportQueue);
 
             #region Выборка + агрегирование
             //TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
-            //double maxCostLINQ = ExtensionsAndLinq.FindMaxCostByYearLINQ(transportQueue, 2010);
-            //TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Cyan);
+            //double maxCostLINQ = ExtensionsAndLinq.FindMaxCostTrucksByYearLINQ(transportQueue, 2010);
+            //TransportWorkshops.WriteColorMessage($"LINQ запросом: {maxCostLINQ}", ConsoleColor.Cyan);
 
-            //double maxCostExtension = ExtensionsAndLinq.FindMaxCostByYearExtension(transportQueue, 2010);
+            //double maxCostExtension = ExtensionsAndLinq.FindMaxCostTrucksByYearExtension(transportQueue, 2010);
             //TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Cyan);
             #endregion
 
             #region Объединение множеств
             //TransportWorkshops.WriteColorMessage("\nОбъединение грузовиков и внедорожников из всех цехов", ConsoleColor.Yellow);
             //var unionTrucksAndOffroadLINQ = ExtensionsAndLinq.UnionTrucksAndOffroadCarsLINQ(transportQueue);
-            //TransportWorkshops.WriteColorMessage($"Методом LINQ: {unionTrucksAndOffroadLINQ.Count()} единиц транспорта", ConsoleColor.Cyan);
+            //TransportWorkshops.WriteColorMessage($"LINQ запросом: {unionTrucksAndOffroadLINQ.Count()} единиц транспорта", ConsoleColor.Cyan);
 
             //var unionTrucksAndOffroadExtension = ExtensionsAndLinq.UnionTrucksAndOffroadCarsExtension(transportQueue);
             //TransportWorkshops.WriteColorMessage($"Методом расширения: {unionTrucksAndOffroadExtension.Count()} единиц транспорта", ConsoleColor.Cyan);
@@ -69,7 +69,7 @@ namespace ExtensionAndLinqLab
             #endregion
 
             #region Соединение
-            //TransportWorkshops.WriteColorMessage("LINQ метод:", ConsoleColor.Yellow);
+            //TransportWorkshops.WriteColorMessage("LINQ запрос:", ConsoleColor.Yellow);
             //ExtensionsAndLinq.JoinWithOwnersLINQ(transportQueue);
 
             //Console.WriteLine();
@@ -78,7 +78,9 @@ namespace ExtensionAndLinqLab
             //ExtensionsAndLinq.JoinWithOwnersExtension(transportQueue);
             #endregion
 
-            ExtensionsAndLinq.CompareFindMaxCost(transportQueue, 2010);
+            #region Сравнение тиков для цикла for, LINQ запроса и метода расширения(поиск самых дорогих грузовиков)
+            ExtensionsAndLinq.CompareFindMaxCostTrucksByYear(transportQueue, 2010);
+            #endregion
         }
     }
 }
