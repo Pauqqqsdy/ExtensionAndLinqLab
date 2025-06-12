@@ -64,7 +64,13 @@ namespace ExtensionAndLinqLab
 
             foreach(var transports in grouping)
             {
-                Console.WriteLine($"Автомобилей с {transports.Key} сиденьями: " + transports.Count());
+                TransportWorkshops.WriteColorMessage($"Автомобилей с {transports.Key} сиденьями: " + transports.Count(), ConsoleColor.Yellow);
+                TransportWorkshops.WriteColorMessage("Список автомобилей:", ConsoleColor.Green);
+
+                foreach (var transport in transports)
+                {
+                    Console.WriteLine(transport);
+                }
             }
 
             return grouping.SelectMany(group => group);
@@ -80,7 +86,13 @@ namespace ExtensionAndLinqLab
 
             foreach (var transports in grouping)
             {
-                Console.WriteLine($"Автомобилей с {transports.Key} сиденьями: " + transports.Count());
+                TransportWorkshops.WriteColorMessage($"Автомобилей с {transports.Key} сиденьями: " + transports.Count(), ConsoleColor.Yellow);
+                TransportWorkshops.WriteColorMessage("Список автомобилей:", ConsoleColor.Green);
+
+                foreach (var transport in transports)
+                {
+                    Console.WriteLine(transport);
+                }
             }
 
             return grouping.SelectMany(group => group);
