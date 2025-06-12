@@ -26,7 +26,7 @@ namespace ExtensionAndLinqLab
             var offroadCarsList = new List<Transport>();
             for (int i = 0; i < count; i++)
             {
-                var car = new PassengerCar();
+                var car = new OffroadCar();
                 car.RandomCreate();
                 offroadCarsList.Add(car);
             }
@@ -38,7 +38,7 @@ namespace ExtensionAndLinqLab
             var trucksList = new List<Transport>();
             for (int i = 0; i < count; i++)
             {
-                var car = new PassengerCar();
+                var car = new Truck();
                 car.RandomCreate();
                 trucksList.Add(car);
             }
