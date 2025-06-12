@@ -158,5 +158,12 @@ namespace ExtensionAndLinqLab
                 _ => "Смешанный"
             };
         }
+
+        public static void WriteColorMessage(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
     }
 }
