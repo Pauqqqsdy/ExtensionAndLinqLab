@@ -9,11 +9,18 @@ namespace ExtensionAndLinqLab
 {
     public class ExtensionsAndLinq
     {
-        public static IEnumerable<OffroadCar> FindExpensiveOffroadCarsLINQ(IEnumerable<Transport> transports, double minCost)
+        public static double FindMaxPriceByYearLINQ(List<Transport> transportList, int minYear)
         {
-            return from transport in transports
-                   where transport is OffroadCar && transport.Cost > minCost
-                   select (OffroadCar)transport;
+            return (from transport in transportList
+                    where transport.Year > minYear
+                    select transport.Cost).Max();
+        }
+
+        public static double FindMaxPriceByYearExtension(List<Transport> transportList, int minYear)
+        {
+            return transportList
+                .Where(transport => transport.Year > minYear)
+                .Max(transport => transport.Cost);
         }
     }
 }
