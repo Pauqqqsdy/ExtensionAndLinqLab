@@ -8,5 +8,6 @@ namespace ExtensionAndLinqLab
 {
     public class LinqRequests
     {
+
     }
 }
