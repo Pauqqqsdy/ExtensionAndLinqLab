@@ -36,25 +36,41 @@ namespace ExtensionAndLinqLab
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
             TransportWorkshops.PrintTransportQueue(transportQueue);
 
-            TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
-            double maxCostLINQ = ExtensionsAndLinq.FindMaxCostByYearLINQ(transportQueue, 2010);
-            TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Cyan);
+            #region Выборка + агрегирование
+            //TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
+            //double maxCostLINQ = ExtensionsAndLinq.FindMaxCostByYearLINQ(transportQueue, 2010);
+            //TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Cyan);
 
-            double maxCostExtension = ExtensionsAndLinq.FindMaxCostByYearExtension(transportQueue, 2010);
-            TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Cyan);
+            //double maxCostExtension = ExtensionsAndLinq.FindMaxCostByYearExtension(transportQueue, 2010);
+            //TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Cyan);
+            #endregion
 
-            TransportWorkshops.WriteColorMessage("\nОбъединение грузовиков и внедорожников из всех цехов", ConsoleColor.Yellow);
-            var unionTrucksAndOffroadLINQ = ExtensionsAndLinq.UnionTrucksAndOffroadCarsLINQ(transportQueue);
-            TransportWorkshops.WriteColorMessage($"Методом LINQ: {unionTrucksAndOffroadLINQ.Count()} единиц транспорта", ConsoleColor.Cyan);
+            #region Объединение множеств
+            //TransportWorkshops.WriteColorMessage("\nОбъединение грузовиков и внедорожников из всех цехов", ConsoleColor.Yellow);
+            //var unionTrucksAndOffroadLINQ = ExtensionsAndLinq.UnionTrucksAndOffroadCarsLINQ(transportQueue);
+            //TransportWorkshops.WriteColorMessage($"Методом LINQ: {unionTrucksAndOffroadLINQ.Count()} единиц транспорта", ConsoleColor.Cyan);
 
-            var unionTrucksAndOffroadExtension = ExtensionsAndLinq.UnionTrucksAndOffroadCarsExtension(transportQueue);
-            TransportWorkshops.WriteColorMessage($"Методом расширения: {unionTrucksAndOffroadExtension.Count()} единиц транспорта", ConsoleColor.Cyan);
+            //var unionTrucksAndOffroadExtension = ExtensionsAndLinq.UnionTrucksAndOffroadCarsExtension(transportQueue);
+            //TransportWorkshops.WriteColorMessage($"Методом расширения: {unionTrucksAndOffroadExtension.Count()} единиц транспорта", ConsoleColor.Cyan);
+            #endregion
 
-            Console.WriteLine();
-            TransportWorkshops.WriteColorMessage("Группировка легковых автомобилей по количеству сидений", ConsoleColor.Yellow);
-            var passengerCarsGroupBySeastLINQ = ExtensionsAndLinq.GroupingPassengerCarsBySeatsLINQ(transportQueue);
-            var passengerCarsGroupBySeastExtension = ExtensionsAndLinq.GroupingPassengerCarsBySeatsExtension(transportQueue);
+            #region Группировка
+            //Console.WriteLine();
+            //TransportWorkshops.WriteColorMessage("Группировка легковых автомобилей по количеству сидений", ConsoleColor.Yellow);
+            //var passengerCarsGroupBySeastLINQ = ExtensionsAndLinq.GroupingPassengerCarsBySeatsLINQ(transportQueue);
+            //Console.WriteLine();
+            //var passengerCarsGroupBySeastExtension = ExtensionsAndLinq.GroupingPassengerCarsBySeatsExtension(transportQueue);
+            #endregion
 
+            #region Получение нового типа
+            //ExtensionsAndLinq.GetNewTypeOffroadCarsLINQ(transportQueue);
+            //Console.WriteLine();
+            //ExtensionsAndLinq.GetNewTypeOffroadCarsExtension(transportQueue);
+            #endregion
+
+            #region Соединение
+            ExtensionsAndLinq.JoinWithOwnersLINQ(transportQueue);            
+            #endregion
         }
     }
 }
