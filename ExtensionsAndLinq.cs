@@ -1,4 +1,5 @@
 ﻿using CarLibrary;
+using DataStructuresLab.BinaryTree;
 using DataStructuresLab.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace ExtensionAndLinqLab
 {
     public class ExtensionsAndLinq
     {
+        #region 1 часть
         public static double FindMaxCostTrucksByYearLINQ(Queue<List<Transport>> transportQueue, int minYear)
         {
             return (from transportList in transportQueue
@@ -270,5 +272,53 @@ namespace ExtensionAndLinqLab
             Console.WriteLine($"Метод расширения: {extensionTime} мс, максимальная стоимость - {resultExtension}");
             Console.WriteLine($"Цикл: {cycleTime} мс, максимальная стоимость - {resultCycle}");
         }
+        #endregion
+
+        #region 2 часть
+        public static double AverageWhereLinq(Tree<int> tree, Func<int, bool> predicate)
+        {
+            if (tree == null) throw new ArgumentNullException();
+            if (predicate == null) throw new ArgumentNullException();
+
+            return (from element in tree
+                    where predicate(element)
+                    select element).Average();
+        }
+
+        public static double AverageWhereExtension(Tree<int> tree, Func<int, bool> predicate)
+        {
+            if (tree == null) throw new ArgumentNullException();
+            if (predicate == null) throw new ArgumentNullException();
+
+            return tree.Where(predicate).Average();
+        }
+
+        public static int CountWhereLinq<T>(Tree<T> tree, Func<T, bool> predicate)
+        {
+            if (tree == null) throw new ArgumentNullException();
+            if (predicate == null) throw new ArgumentNullException();
+
+            return (from element in tree
+                    where predicate(element)
+                    select element).Count();
+        }
+
+        public static int CountWhereExtension<T>(Tree<T> tree, Func<T, bool> predicate)
+        {
+            if (tree == null) throw new ArgumentNullException();
+            if (predicate == null) throw new ArgumentNullException();
+
+            return tree.Where(predicate).Count();
+        }
+
+        public static IEnumerable<IGrouping<TKey, T>> GroupByLinq<T, TKey>(Tree<T> tree, Func<T, TKey> key)
+        {
+            if (tree == null) throw new ArgumentNullException();
+            if (key == null) throw new ArgumentNullException();
+
+            return from element in tree
+                   group element by key(element);
+        }
+        #endregion
     }
 }
