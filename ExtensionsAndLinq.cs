@@ -278,6 +278,7 @@ namespace ExtensionAndLinqLab
         public static double AverageWhereLinq(Tree<int> tree, Func<int, bool> predicate)
         {
             if (tree == null) throw new ArgumentNullException();
+
             if (predicate == null) throw new ArgumentNullException();
 
             return (from element in tree
@@ -288,6 +289,7 @@ namespace ExtensionAndLinqLab
         public static double AverageWhereExtension(Tree<int> tree, Func<int, bool> predicate)
         {
             if (tree == null) throw new ArgumentNullException();
+
             if (predicate == null) throw new ArgumentNullException();
 
             return tree.Where(predicate).Average();
@@ -296,6 +298,7 @@ namespace ExtensionAndLinqLab
         public static int CountWhereLinq<T>(Tree<T> tree, Func<T, bool> predicate)
         {
             if (tree == null) throw new ArgumentNullException();
+
             if (predicate == null) throw new ArgumentNullException();
 
             return (from element in tree
@@ -306,6 +309,7 @@ namespace ExtensionAndLinqLab
         public static int CountWhereExtension<T>(Tree<T> tree, Func<T, bool> predicate)
         {
             if (tree == null) throw new ArgumentNullException();
+
             if (predicate == null) throw new ArgumentNullException();
 
             return tree.Where(predicate).Count();
@@ -314,10 +318,20 @@ namespace ExtensionAndLinqLab
         public static IEnumerable<IGrouping<TKey, T>> GroupByLinq<T, TKey>(Tree<T> tree, Func<T, TKey> key)
         {
             if (tree == null) throw new ArgumentNullException();
+
             if (key == null) throw new ArgumentNullException();
 
             return from element in tree
                    group element by key(element);
+        }
+
+        public static IEnumerable<IGrouping<TKey, T>> GroupByExtension<T, TKey>(Tree<T> tree, Func<T, TKey> key)
+        {
+            if (tree == null) throw new ArgumentNullException();
+
+            if (key == null) throw new ArgumentNullException();
+
+            return tree.GroupBy(key);
         }
         #endregion
     }

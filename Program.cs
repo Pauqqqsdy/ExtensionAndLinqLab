@@ -79,7 +79,56 @@ namespace ExtensionAndLinqLab
             #endregion
 
             #region Сравнение тиков для цикла for, LINQ запроса и метода расширения(поиск самых дорогих грузовиков)
-            ExtensionsAndLinq.CompareFindMaxCostTrucksByYear(transportQueue, 2010);
+            //ExtensionsAndLinq.CompareFindMaxCostTrucksByYear(transportQueue, 2010);
+            #endregion
+
+            #region 2 часть
+            var tree = new DataStructuresLab.BinaryTree.Tree<int>();
+            var random = new Random();
+
+            for (int i = 0; i < 15; i++)
+            {
+                int value = random.Next(1, 100);
+                tree.Add(value);
+            }
+
+            TransportWorkshops.WriteColorMessage("Среднее значение чётных чисел в дереве:", ConsoleColor.Yellow);
+
+            double avgLinq = ExtensionsAndLinq.AverageWhereLinq(tree, x => x % 2 == 0);
+            TransportWorkshops.WriteColorMessage($"LINQ запрос: {avgLinq:F2}", ConsoleColor.Cyan);
+
+            double avgExtension = ExtensionsAndLinq.AverageWhereExtension(tree, x => x % 2 == 0);
+            TransportWorkshops.WriteColorMessage($"Метод расширения: {avgExtension:F2}", ConsoleColor.Cyan);
+
+            Console.WriteLine();
+            
+            TransportWorkshops.WriteColorMessage("Количество чисел, больших 50:", ConsoleColor.Yellow);
+            int countLinq = ExtensionsAndLinq.CountWhereLinq(tree, x => x > 50);
+            TransportWorkshops.WriteColorMessage($"LINQ запрос: {countLinq}", ConsoleColor.Cyan);
+
+            int countExtension = ExtensionsAndLinq.CountWhereExtension(tree, x => x > 50);
+            TransportWorkshops.WriteColorMessage($"Метод расширения: {countExtension}", ConsoleColor.Cyan);
+
+            Console.WriteLine();
+
+            TransportWorkshops.WriteColorMessage("Группировка чисел по чётности:", ConsoleColor.Yellow);
+            var groupsLinq = ExtensionsAndLinq.GroupByLinq(tree, x => x % 2 == 0 ? "Чётные" : "Нечётные");
+            TransportWorkshops.WriteColorMessage("LINQ запрос:", ConsoleColor.Cyan);
+
+            foreach (var group in groupsLinq)
+            {
+                Console.WriteLine($"{group.Key}: {string.Join(", ", group.OrderBy(x => x))}");
+            }
+
+            Console.WriteLine();
+
+            var groupsExtension = ExtensionsAndLinq.GroupByExtension(tree, x => x % 2 == 0 ? "Чётные" : "Нечётные");
+            TransportWorkshops.WriteColorMessage("Метод расширения:", ConsoleColor.Cyan);
+
+            foreach (var group in groupsExtension)
+            {
+                Console.WriteLine($"{group.Key}: {string.Join(", ", group.OrderBy(x => x))}");
+            }
             #endregion
         }
     }
