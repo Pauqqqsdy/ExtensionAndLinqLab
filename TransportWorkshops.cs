@@ -112,18 +112,19 @@ namespace ExtensionAndLinqLab
         {
             if (transportQueue == null || transportQueue.Count == 0)
             {
-                Console.WriteLine("Завод пуст.");
+                WriteColorMessage("Завод пуст.", ConsoleColor.Red);
                 return;
             }
 
-            Console.WriteLine($"Общее количество цехов в заводе: {transportQueue.Count}\n");
+            WriteColorMessage($"Общее количество цехов в заводе: {transportQueue.Count}", ConsoleColor.Green);
+            Console.WriteLine();
 
             int workshopNumber = 1;
             foreach (var workshop in transportQueue)
             {
                 string shopType = GetWorkshopName(workshop);
 
-                Console.WriteLine($"Цех {workshopNumber} ({shopType}): {workshop.Count} единиц транспорта");
+                WriteColorMessage($"Цех {workshopNumber} ({shopType}): {workshop.Count} единиц транспорта", ConsoleColor.Green);
 
                 if (workshop.Count > 0)
                 {
@@ -134,7 +135,7 @@ namespace ExtensionAndLinqLab
                 }
                 else
                 {
-                    Console.WriteLine("Цех пуст");
+                    WriteColorMessage("Цех пуст", ConsoleColor.Red);
                 }
 
                 Console.WriteLine();

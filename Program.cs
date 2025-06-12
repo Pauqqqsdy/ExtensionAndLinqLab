@@ -32,18 +32,23 @@ namespace ExtensionAndLinqLab
             //    transportList
             //);
 
-            TransportWorkshops.WriteColorMessage("Завод Бинго!", ConsoleColor.Red);
+            TransportWorkshops.WriteColorMessage("Завод Бинго!", ConsoleColor.Magenta);
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
             TransportWorkshops.PrintTransportQueue(transportQueue);
 
             TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
             double maxCostLINQ = ExtensionsAndLinq.FindMaxCostByYearLINQ(transportQueue, 2010);
-            TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Green);
+            TransportWorkshops.WriteColorMessage($"Методом LINQ: {maxCostLINQ}", ConsoleColor.Cyan);
 
             double maxCostExtension = ExtensionsAndLinq.FindMaxCostByYearExtension(transportQueue, 2010);
-            TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Green);
+            TransportWorkshops.WriteColorMessage($"Методом расширения: {maxCostExtension}", ConsoleColor.Cyan);
 
+            TransportWorkshops.WriteColorMessage("\nОбъединение грузовиков и внедорожников из всех цехов", ConsoleColor.Yellow);
+            var unionTrucksAndOffroadLINQ = ExtensionsAndLinq.UnionTrucksAndOffroadCarsLINQ(transportQueue);
+            TransportWorkshops.WriteColorMessage($"Методом LINQ: {unionTrucksAndOffroadLINQ.Count()} единиц транспорта", ConsoleColor.Cyan);
 
+            var unionTrucksAndOffroadExtension = ExtensionsAndLinq.UnionTrucksAndOffroadCarsExtension(transportQueue);
+            TransportWorkshops.WriteColorMessage($"Методом расширения: {unionTrucksAndOffroadExtension.Count()} единиц транспорта", ConsoleColor.Cyan);
         }
     }
 }
