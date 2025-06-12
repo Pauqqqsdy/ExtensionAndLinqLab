@@ -1,4 +1,5 @@
 ﻿using CarLibrary;
+using DataStructuresLab.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,38 @@ namespace ExtensionAndLinqLab
                 .Where(transport => transport is OffroadCar);
 
             return trucks.Union(offroadCars);
+        }
+
+        public static IEnumerable<Transport> GroupingPassengerCarsBySeatsLINQ(Queue<List<Transport>> transportQueue)
+        {
+            TransportWorkshops.WriteColorMessage("LINQ метод: ", ConsoleColor.Cyan);
+            var grouping = from transportList in transportQueue
+                            from transport in transportList
+                            where transport is PassengerCar
+                            group transport by ((PassengerCar)transport).SeatsNumber;
+
+            foreach(var transports in grouping)
+            {
+                Console.WriteLine($"Автомобилей с {transports.Key} сиденьями: " + transports.Count());
+            }
+
+            return grouping.SelectMany(group => group);
+        }
+
+        public static IEnumerable<Transport> GroupingPassengerCarsBySeatsExtension(Queue<List<Transport>> transportQueue)
+        {
+            TransportWorkshops.WriteColorMessage("Метод расширения: ", ConsoleColor.Cyan);
+            var grouping = transportQueue
+                .SelectMany(transportList => transportList)
+                .Where(transport => transport is PassengerCar)
+                .GroupBy(transport => ((PassengerCar)transport).SeatsNumber);
+
+            foreach (var transports in grouping)
+            {
+                Console.WriteLine($"Автомобилей с {transports.Key} сиденьями: " + transports.Count());
+            }
+
+            return grouping.SelectMany(group => group);
         }
     }
 }

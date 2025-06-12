@@ -49,6 +49,12 @@ namespace ExtensionAndLinqLab
 
             var unionTrucksAndOffroadExtension = ExtensionsAndLinq.UnionTrucksAndOffroadCarsExtension(transportQueue);
             TransportWorkshops.WriteColorMessage($"Методом расширения: {unionTrucksAndOffroadExtension.Count()} единиц транспорта", ConsoleColor.Cyan);
+
+            Console.WriteLine();
+            TransportWorkshops.WriteColorMessage("Группировка легковых автомобилей по количеству сидений", ConsoleColor.Yellow);
+            var passengerCarsGroupBySeastLINQ = ExtensionsAndLinq.GroupingPassengerCarsBySeatsLINQ(transportQueue);
+            var passengerCarsGroupBySeastExtension = ExtensionsAndLinq.GroupingPassengerCarsBySeatsExtension(transportQueue);
+
         }
     }
 }
