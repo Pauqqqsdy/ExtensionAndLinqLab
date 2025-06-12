@@ -35,7 +35,6 @@ namespace ExtensionAndLinqLab
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
             TransportWorkshops.WriteColorMessage("Цех", ConsoleColor.Red);
             TransportWorkshops.PrintTransportQueue(transportQueue);
-
         }
     }
 }
