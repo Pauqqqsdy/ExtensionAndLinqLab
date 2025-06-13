@@ -32,11 +32,14 @@ namespace ExtensionAndLinqLab
             //    transportList
             //);
 
+            // Создании очереди транспорта (завод)
             TransportWorkshops.WriteColorMessage("Завод, Бинго!", ConsoleColor.Magenta);
             var transportQueue = TransportWorkshops.CreateTransportQueue(10);
             TransportWorkshops.PrintTransportQueue(transportQueue);
 
             #region Выборка + агрегирование
+            // Поиск максимальной стоимости грузовиков
+
             //TransportWorkshops.WriteColorMessage("Поиск в цехе самого дорогого грузовика, который выпустили позже 2010 года:", ConsoleColor.Yellow);
             //double maxCostLINQ = ExtensionsAndLinq.FindMaxCostTrucksByYearLINQ(transportQueue, 2010);
             //TransportWorkshops.WriteColorMessage($"LINQ запросом: {maxCostLINQ}", ConsoleColor.Cyan);
@@ -83,6 +86,7 @@ namespace ExtensionAndLinqLab
             #endregion
 
             #region 2 часть
+            // Создание дерева и заполнение его рандомными числами
             var tree = new DataStructuresLab.BinaryTree.Tree<int>();
             var random = new Random();
 
@@ -92,6 +96,7 @@ namespace ExtensionAndLinqLab
                 tree.Add(value);
             }
 
+            // Среднее значение чётных чисел в дереве
             TransportWorkshops.WriteColorMessage("Среднее значение чётных чисел в дереве:", ConsoleColor.Yellow);
 
             double avgLinq = ExtensionsAndLinq.AverageWhereLinq(tree, x => x % 2 == 0);
@@ -101,7 +106,8 @@ namespace ExtensionAndLinqLab
             TransportWorkshops.WriteColorMessage($"Метод расширения: {avgExtension:F2}", ConsoleColor.Cyan);
 
             Console.WriteLine();
-            
+
+            // Подсчёт количества чисел, больших 50
             TransportWorkshops.WriteColorMessage("Количество чисел, больших 50:", ConsoleColor.Yellow);
             int countLinq = ExtensionsAndLinq.CountWhereLinq(tree, x => x > 50);
             TransportWorkshops.WriteColorMessage($"LINQ запрос: {countLinq}", ConsoleColor.Cyan);
@@ -111,6 +117,7 @@ namespace ExtensionAndLinqLab
 
             Console.WriteLine();
 
+            // Группировка чисел по чётности
             TransportWorkshops.WriteColorMessage("Группировка чисел по чётности:", ConsoleColor.Yellow);
             var groupsLinq = ExtensionsAndLinq.GroupByLinq(tree, x => x % 2 == 0 ? "Чётные" : "Нечётные");
             TransportWorkshops.WriteColorMessage("LINQ запрос:", ConsoleColor.Cyan);
